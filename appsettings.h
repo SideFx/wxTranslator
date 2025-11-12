@@ -1,13 +1,14 @@
-//
-// Created by janbu on 28.10.2025.
-//
+/////////////////////////////////////////////////////////////////////////////
+// Name:        appsettings.h
+// Purpose:     Header file for appsettings.cpp
+// Author:      Jan Buchholz
+// Created:     2025-11-12
+/////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
 #include <wx/wx.h>
 #include "jbtypes.h"
-
-class MainFrame; // forward declaration
 
 class AppSettings {
 public:
@@ -16,7 +17,6 @@ public:
     AppSettings(const AppSettings&) = delete;
     // prohibit overwrite
     AppSettings& operator=(const AppSettings&) = delete;
-    //[[nodiscard]] MainFrame* getMainWindow() const;
     void loadPreferences();
     void savePreferences();
     void openPreferencesDialog();

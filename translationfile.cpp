@@ -1,6 +1,9 @@
-//
-// Created by janbu on 31.10.2025.
-//
+/////////////////////////////////////////////////////////////////////////////
+// Name:        translationfile.cpp
+// Purpose:     Manage translation files and data
+// Author:      Jan Buchholz
+// Created:     2025-11-12
+/////////////////////////////////////////////////////////////////////////////
 
 #include "translationfile.h"
 #include <iostream>

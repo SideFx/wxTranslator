@@ -1,6 +1,9 @@
-//
-// Created by janbu on 30.10.2025.
-//
+/////////////////////////////////////////////////////////////////////////////
+// Name:        translationdialog.cpp
+// Purpose:     Dialog for creating/opening translation files
+// Author:      Jan Buchholz
+// Created:     2025-11-12
+/////////////////////////////////////////////////////////////////////////////
 
 #include "translationdialog.h"
 #include "definitions.h"

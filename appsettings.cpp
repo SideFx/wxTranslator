@@ -1,6 +1,9 @@
-//
-// Created by janbu on 28.10.2025.
-//
+/////////////////////////////////////////////////////////////////////////////
+// Name:        appsettings.cpp
+// Purpose:     Mangement of application settings (singleton)
+// Author:      Jan Buchholz
+// Created:     2025-11-12
+/////////////////////////////////////////////////////////////////////////////
 
 #include "appsettings.h"
 #include <wx/stdpaths.h>
@@ -32,15 +35,10 @@ AppSettings::AppSettings(wxFrame* mainWin) : m_mainWindow(mainWin) {
     m_prefsPath = toStdString(wxStandardPaths::Get().GetUserConfigDir());
 }
 
-//MainFrame* AppSettings::getMainWindow() const {
-//    return m_mainWindow;
-//}
-
 void AppSettings::savePreferences() {
     wxFrame* frame = dynamic_cast<wxFrame*>(m_mainWindow);
     const auto pos = m_mainWindow->GetPosition();
     const auto size = m_mainWindow->GetSize();
-    //const auto sash1pos = m_mainWindow->m
     m_prefs.coordinates = {pos.x, pos.y, size.x, size.y, m_mainWindow->IsMaximized()};
     const std::string fullPath = m_prefsPath + getPathSeparator() + APP_VENDOR + "." + APP_NAME + FILE_EXT_JSON;
     json j;

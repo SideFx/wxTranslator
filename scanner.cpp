@@ -1,3 +1,10 @@
+/////////////////////////////////////////////////////////////////////////////
+// Name:        scanner.cpp
+// Purpose:     Search wxTranslation macros in source code files
+// Author:      Jan Buchholz
+// Created:     2025-11-12
+/////////////////////////////////////////////////////////////////////////////
+
 #include "scanner.h"
 #include <regex>
 #include <sstream>
@@ -127,25 +134,3 @@ std::vector<single_translation> Scanner::scanFolder() {
     return translations;
 }
 
-/*
-# Pfade zur .po und .mo Datei
-set(PO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/locale/de/messages.po)
-set(MO_FILE ${CMAKE_CURRENT_BINARY_DIR}/locale/de/LC_MESSAGES/messages.mo)
-
-# Erzeuge Zielverzeichnis, falls nötig
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/locale/de/LC_MESSAGES)
-
-# Konvertierung mit msgfmt
-add_custom_command(
-OUTPUT ${MO_FILE}
-COMMAND msgfmt -o ${MO_FILE} ${PO_FILE}
-DEPENDS ${PO_FILE}
-COMMENT "Compiling ${PO_FILE} to ${MO_FILE}"
-VERBATIM
-)
-
-# Optional: eigenes Target, um manuell zu bauen
-add_custom_target(compile_translations ALL
-DEPENDS ${MO_FILE}
-)
-*/
