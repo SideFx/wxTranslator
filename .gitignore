@@ -1,0 +1,28 @@
+# Build artifacts
+build/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Translation files
+*.mo
+*.po
+
+# Logs
+*.log
+
+# CMake-generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# IDE-specific (optional)
+.vscode/
+.idea/
+*.user
+*.sln
+*.vcxproj*
