@@ -2,38 +2,133 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "ucrt64-gcc-debug",
-       "displayName": "GCC Debug (ucrt64)",
+      "name": "ucrt64-debug_cfg",
+      "displayName": "Debug (Windows x64 ucrt64)",
+      "hidden": false,
+      "condition": {
+        "type": "allOf",
+        "conditions": [
+          {
+            "type": "equals",
+            "lhs": "${hostSystemName}",
+            "rhs": "Windows"
+          },
+          {
+            "type": "notMatches",
+            "string": "$env{PROCESSOR_IDENTIFIER}",
+            "regex": "^ARMv*"
+          }
+        ]
+      },
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/debug",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "C:/msys64/ucrt64/bin/cc.exe",
-        "CMAKE_CXX_COMPILER": "C:/msys64/ucrt64/bin/g++.exe",
+        "CMAKE_C_COMPILER": "cc.exe",
+        "CMAKE_CXX_COMPILER": "g++.exe",
         "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
-      "name": "ucrt64-gcc-release",
-      "displayName": "GCC Release (ucrt64)",
+      "name": "ucrt64-release_cfg",
+      "displayName": "Release (Windows x64 ucrt64)",
+      "hidden": false,
+      "condition": {
+        "type": "allOf",
+        "conditions": [
+          {
+            "type": "equals",
+            "lhs": "${hostSystemName}",
+            "rhs": "Windows"
+          },
+          {
+            "type": "notMatches",
+            "string": "$env{PROCESSOR_IDENTIFIER}",
+            "regex": "^ARMv*"
+          }
+        ]
+      },
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "C:/msys64/ucrt64/bin/cc.exe",
-        "CMAKE_CXX_COMPILER": "C:/msys64/ucrt64/bin/g++.exe",
+        "CMAKE_C_COMPILER": "cc.exe",
+        "CMAKE_CXX_COMPILER": "g++.exe",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "clangarm64-debug_cfg",
+      "displayName": "Debug (Windows arm64 clangarm64)",
+      "hidden": false,
+      "condition": {
+        "type": "allOf",
+        "conditions": [
+          {
+            "type": "equals",
+            "lhs": "${hostSystemName}",
+            "rhs": "Windows"
+          },
+          {
+            "type": "matches",
+            "string": "$env{PROCESSOR_IDENTIFIER}",
+            "regex": "^ARMv*"
+          }
+        ]
+      },
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang.exe",
+        "CMAKE_CXX_COMPILER": "clang++.exe",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "clangarm64-release_cfg",
+      "displayName": "Release (Windows arm64 clangarm64)",
+      "hidden": false,
+      "condition": {
+        "type": "allOf",
+        "conditions": [
+          {
+            "type": "equals",
+            "lhs": "${hostSystemName}",
+            "rhs": "Windows"
+          },
+{
+            "type": "matches",
+            "string": "$env{PROCESSOR_IDENTIFIER}",
+            "regex": "^ARMv*"
+          }
+        ]
+      },
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang.exe",
+        "CMAKE_CXX_COMPILER": "clang++.exe",
         "CMAKE_BUILD_TYPE": "Release"
       }
     }
-
   ],
   "buildPresets": [
     {
-      "name": "gcc-debug",
-      "configurePreset": "ucrt64-gcc-debug",
+      "name": "msys2-ucrt64-debug",
+      "configurePreset": "ucrt64-debug_cfg",
       "targets": ["wxTranslator"]
     },
     {
-      "name": "gcc-release",
-      "configurePreset": "ucrt64-gcc-release",
+      "name": "msys2-ucrt64-release",
+      "configurePreset": "ucrt64-release_cfg",
+      "targets": ["wxTranslator"]
+    },
+    {
+      "name": "msys2-clangarm64-debug",
+      "configurePreset": "clangarm64-debug_cfg",
+      "targets": ["wxTranslator"]
+    },
+    {
+      "name": "msys2-clangarm64-release",
+      "configurePreset": "clangarm64-release_cfg",
       "targets": ["wxTranslator"]
     }
   ]

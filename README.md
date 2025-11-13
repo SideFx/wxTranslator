@@ -45,7 +45,9 @@ wxTranslator was used to generate its German translation:
 - The people who created and maintain [wxWidgets](https://wxwidgets.org/)
 - Microsoft Copilot, which was an indispensable help during my very first delve into wxWidgets
 
-
+### Updates
+2025-11-13:
+Added presets for Windows arm64 and msys2 clangarm64 toolchain to CMakePresets.json. Obviously there's no reliable method to detect the processor architecture in CMake at the moment. Tried a quirky workaround using [PROCESSOR_IDENTIFIER], which works at least on my machines.
 
 
 
