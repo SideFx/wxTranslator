@@ -230,7 +230,6 @@ void MainWindow::showDataForFile(const wxString& selectedFile) {
     m_originalTextListBox->DeleteAllItems();
     for (auto& s : m_scans) {
         if (s.source_file == selectedFile) {
-            std::string orig = escapeSpecials(s.original);
             wxString status;
             switch (s.status) {
                 case newtext:
@@ -248,7 +247,7 @@ void MainWindow::showDataForFile(const wxString& selectedFile) {
             }
             long rowIndex = m_originalTextListBox->GetItemCount();            
             rowIndex = m_originalTextListBox->InsertItem(rowIndex, status);
-            m_originalTextListBox->SetItem(rowIndex, 1, toWxString(orig));
+            m_originalTextListBox->SetItem(rowIndex, 1, toWxString(s.original));
             b = true;
         }
     }

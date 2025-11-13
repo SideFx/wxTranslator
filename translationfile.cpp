@@ -34,7 +34,7 @@ bool TranslationFile::save(const std::string& fileName) {
     for (auto& m : m_translations) {
         t[CONFIG_TRANSLATION][CONFIG_TRANSLATION_SOURCEFILE] = m.source_file;
         t[CONFIG_TRANSLATION][CONFIG_TRANSLATION_ORIGINALTEXT] = m.original;
-        t[CONFIG_TRANSLATION][CONFIG_TRANSLATION_TRANSLATEDTEXT] = unescapeSpecials(m.translation);
+        t[CONFIG_TRANSLATION][CONFIG_TRANSLATION_TRANSLATEDTEXT] = m.translation;
         t[CONFIG_TRANSLATION][CONFIG_TRANSLATION_STATUS] = m.status;
         a.push_back(t);
     }
