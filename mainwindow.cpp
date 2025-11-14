@@ -143,7 +143,9 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, wxEmptyString) {
     Bind(wxEVT_CLOSE_WINDOW, &MainWindow::onClose, this);
     Bind(wxEVT_SIZE, &MainWindow::onResize, this);
     m_appTitle = wxString(APP_NAME) + SPACE  + wxString(APP_VERSION );
-    SetMinSize(wxSize(1680, 1050));
+    #ifdef __WXMSW__
+        SetMinSize(wxSize(1680, 1050));
+    #endif
     wxTopLevelWindowBase::Layout();
     resetData();
     m_appSettings = &AppSettings::instance(this);

@@ -108,6 +108,50 @@
         "CMAKE_CXX_COMPILER": "clang++.exe",
         "CMAKE_BUILD_TYPE": "Release"
       }
+    },
+    {
+      "name": "clang-debug_cfg",
+      "displayName": "Debug (MacOS clang)",
+      "hidden": false,
+      "condition": {
+        "type": "allOf",
+        "conditions": [
+          {
+            "type": "equals",
+            "lhs": "${hostSystemName}",
+            "rhs": "Darwin"
+          }
+        ]
+      },
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "clang-release_cfg",
+      "displayName": "Release (MacOS clang)",
+      "hidden": false,
+      "condition": {
+        "type": "allOf",
+        "conditions": [
+          {
+            "type": "equals",
+            "lhs": "${hostSystemName}",
+            "rhs": "Darwin"
+          }
+        ]
+      },
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
     }
   ],
   "buildPresets": [
@@ -129,6 +173,16 @@
     {
       "name": "msys2-clangarm64-release",
       "configurePreset": "clangarm64-release_cfg",
+      "targets": ["wxTranslator"]
+    },
+    {
+      "name": "darwin-clang-debug",
+      "configurePreset": "clang-debug_cfg",
+      "targets": ["wxTranslator"]
+    },
+    {
+      "name": "darwin-clang-release",
+      "configurePreset": "clang-release_cfg",
       "targets": ["wxTranslator"]
     }
   ]

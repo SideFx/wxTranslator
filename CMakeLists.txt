@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 3.25)
 project(wxTranslator)
 set(CMAKE_CXX_STANDARD 20)
+if(WIN32)
 set(CMAKE_PREFIX_PATH C:/wxWidgets)
 set(wxWidgets_ROOT_DIR C:/wxWidgets)
 add_executable(wxTranslator WIN32
@@ -27,6 +28,35 @@ add_executable(wxTranslator WIN32
         jbconversion.hpp
         logo.hpp
 )
+endif()
+if(APPLE)
+set(CMAKE_PREFIX_PATH /Users/Shared/wxWidgets)
+set(wxWidgets_ROOT_DIR /Users/Shared/wxWidgets)
+add_executable(wxTranslator
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+        iconpool.h
+        resource.rc app.ico
+        definitions.h
+        scanner.h
+        scanner.cpp
+        json.hpp
+        preferencesdialog.cpp
+        preferencesdialog.h
+        appsettings.cpp
+        appsettings.h
+        jbtypes.h
+        translationdialog.cpp
+        translationdialog.h
+        translationfile.cpp
+        translationfile.h
+        aboutdialog.cpp
+        aboutdialog.h
+        jbconversion.hpp
+        logo.hpp
+)
+endif()
 find_package(wxWidgets REQUIRED COMPONENTS core base CONFIG)
 target_link_libraries(wxTranslator PRIVATE ${wxWidgets_LIBRARIES})
 set(TRANSLATION_DIR "${PROJECT_BINARY_DIR}/locale/de")
