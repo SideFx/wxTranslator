@@ -4,11 +4,10 @@ First, install MSYS2 from [https://www.msys2.org/](https://www.msys2.org/).
 
 Then proceed as follows:
 
-- Launch the **UCRT64** console
+- Launch either the **UCRT64** (Windows x64) or **CLANGARM64** (Windows arm64) console
 - Update the toolchain using pacman:  
   `pacman -Syu`
-- Copy the included shell script to your home directory and execute it  
-  (This will install all necessary packages required to build the wxWidgets framework)
+- Copy the appropriate included shell script to your home directory and execute it (This will install all necessary packages required to build the wxWidgets framework)
 - Create a `git` folder in your home directory:  
   `mkdir git`
 - Change into that directory:  
@@ -25,4 +24,5 @@ Then proceed as follows:
 - Build and install wxWidgets:  
   `cmake --build . --target install`
 - Add `c:/wxWidgets/bin` to your system `PATH` so that applications can find the wxWidgets .DLL libraries
+- Copy `c:/wxWidgets/lib/wx/config/msw-unicode-3.3` to `c:/wxWidgets/bin` and rename it to `wx-config` 
 

@@ -37,7 +37,6 @@ add_executable(wxTranslator
         mainwindow.cpp
         mainwindow.h
         iconpool.h
-        resource.rc app.ico
         definitions.h
         scanner.h
         scanner.cpp
@@ -55,6 +54,7 @@ add_executable(wxTranslator
         aboutdialog.h
         jbconversion.hpp
         logo.hpp
+        app.icns
 )
 endif()
 find_package(wxWidgets REQUIRED COMPONENTS core base CONFIG)
@@ -75,12 +75,11 @@ if(WIN32)
     endif()
 endif()
 
-# To do:
-#if(APPLE)
-#    set(MACOSX_BUNDLE_ICON_FILE sample.icns)
-#    set_source_files_properties(sample.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
-#    set_target_properties(wxTranslator PROPERTIES
-#        MACOSX_BUNDLE TRUE
-#        RESOURCE app.icns
-#    )
-#endif()
+if(APPLE)
+    set(MACOSX_BUNDLE_ICON_FILE app.icns)
+    set_source_files_properties(app.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    set_target_properties(wxTranslator PROPERTIES
+        MACOSX_BUNDLE TRUE
+        RESOURCE app.icns
+    )
+endif()

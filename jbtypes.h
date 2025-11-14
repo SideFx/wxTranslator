@@ -23,7 +23,7 @@ typedef struct {
     int size_w;
     int size_h;
     bool maximized;
-    int sash1pos;
+    int sashpos;
 } window_coordinates;
 
 typedef std::map<std::string, bool> extensions_t;

@@ -10,9 +10,11 @@
 #include <wx/wx.h>
 #include "jbtypes.h"
 
+class MainWindow; // forward declaration
+
 class AppSettings {
 public:
-    static AppSettings& instance(wxFrame* mainWin = nullptr);
+    static AppSettings& instance(MainWindow* mainWin = nullptr);
     // prohibit copying
     AppSettings(const AppSettings&) = delete;
     // prohibit overwrite
@@ -24,12 +26,15 @@ public:
 
 private:
     // private constructor with parent MainFrame
-    explicit AppSettings(wxFrame* mainWin);
+    explicit AppSettings(MainWindow* mainWin);
 
-    wxFrame* m_mainWindow = nullptr;
+    MainWindow* m_mainWindow = nullptr;
     app_settings m_prefs;
     std::string m_prefsPath;
 
-    const int windowHeight = 600;
-    const int windowWidth = 800;
+    const int c_windowHeight = 800;
+    const int c_windowWidth = 1280;
+    const int c_sashPos = 200;
+    const int c_windowPosX = 300;
+    const int c_windowsPosY = 100;
 };
