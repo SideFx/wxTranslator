@@ -17,7 +17,7 @@ public:
     explicit TranslationDialog(wxFrame* parent);
     ~TranslationDialog();
     int showDialog(TranslationFile* tf, displayMode mode);
-    file_settings getFileSettings();
+    mo_file_settings getFileSettings();
 
 private:
     wxDialog* m_dialog;
@@ -29,10 +29,10 @@ private:
     wxDirPickerCtrl* m_dirPicker;
     wxStaticText* m_lblProjectFolder; 
     displayMode m_mode;
-    file_settings m_fileSettings;
-    file_settings m_fileSettings_tf;
+    mo_file_settings m_fileSettings;
+    mo_file_settings m_fileSettings_tf;
     TranslationFile* m_tf;
-    message m_message;
+    mo_message m_message;
     void onOkClicked(wxCommandEvent& event);
     void onCancelClicked(wxCommandEvent& event);
     void onFileChanged(wxFileDirPickerEvent& event);

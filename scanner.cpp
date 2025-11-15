@@ -94,8 +94,8 @@ std::vector<std::string> Scanner::processFile(const std::filesystem::path& filep
 }
 
 // Traverse directory
-std::vector<single_translation> Scanner::scanFolder() {
-    std::vector<single_translation> translations{};
+std::vector<mo_single_translation> Scanner::scanFolder() {
+    std::vector<mo_single_translation> translations{};
     std::filesystem::recursive_directory_iterator dirIt(m_projectFolder), endIt;
     while (dirIt != endIt) {
         const std::filesystem::directory_entry& entry = *dirIt;
@@ -122,7 +122,7 @@ std::vector<single_translation> Scanner::scanFolder() {
                     if (ex.second && ex.first == ext) {
                         std::vector<std::string> trs = processFile(entry.path());
                         for (const auto& tr : trs) {
-                            single_translation s = {.source_file = entryName, .original = tr, .status = untranslated};
+                            mo_single_translation s = {.source_file = entryName, .original = tr, .status = untranslated};
                             translations.push_back(s);
                         }
                     }

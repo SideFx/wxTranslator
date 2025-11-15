@@ -15,7 +15,7 @@
 class Scanner {
 public:
     explicit Scanner(const TranslationFile* tf);
-    std::vector<single_translation> scanFolder();
+    std::vector<mo_single_translation> scanFolder();
     std::vector<std::string> processFile(const std::filesystem::path& filepath);
 
 private:
@@ -27,7 +27,7 @@ private:
     const TranslationFile* m_tf;
     std::vector<std::string> m_exclusionList;
     std::string m_projectFolder;
-    extensions_t m_extensions;
+    mt_extensions m_extensions;
 };
 
 

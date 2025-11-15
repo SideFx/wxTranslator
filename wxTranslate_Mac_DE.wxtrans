@@ -1,0 +1,433 @@
+{
+    "common": {
+        "exclusion": "build*\njson.hpp",
+        "filename": "/Users/jan/Developer/VS Code/wxWidgets/wxTranslator/wxTranslate_DE.wxtrans",
+        "projectfolder": "/Users/jan/Developer/VS Code/wxWidgets/wxTranslator"
+    },
+    "translationarray": [
+        {
+            "translation": {
+                "originaltext": "Scan files for wx translation\\nmacros:",
+                "sourcefile": "preferencesdialog.cpp",
+                "status": 1,
+                "translatedtext": "Dateien nach wx Übersetzungs-\nMacros scannen:"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Path to msgfmt tool:",
+                "sourcefile": "preferencesdialog.cpp",
+                "status": 1,
+                "translatedtext": "Pfad zum msgfmt Utiltity:"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Source files:",
+                "sourcefile": "mainwindow.cpp",
+                "status": 1,
+                "translatedtext": "Quelldateien:"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Selected source file:",
+                "sourcefile": "mainwindow.cpp",
+                "status": 1,
+                "translatedtext": "Ausgewählte Quelldatei:"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "List of source texts:",
+                "sourcefile": "mainwindow.cpp",
+                "status": 1,
+                "translatedtext": "Liste der Ursprungstexte:"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Status",
+                "sourcefile": "mainwindow.cpp",
+                "status": 1,
+                "translatedtext": "Status"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Source Text",
+                "sourcefile": "mainwindow.cpp",
+                "status": 1,
+                "translatedtext": "Ursprungstext"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Selected source text:",
+                "sourcefile": "mainwindow.cpp",
+                "status": 1,
+                "translatedtext": "Ausgewählter Ursprungstext:"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Translated text:",
+                "sourcefile": "mainwindow.cpp",
+                "status": 1,
+                "translatedtext": "Übersetzter Text:"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "I/O error while saving translation file.",
+                "sourcefile": "translationfile.cpp",
+                "status": 1,
+                "translatedtext": "I/O Fehler beim Sichern der Übersetzungsdatei."
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Failed to parse JSON in translation file.",
+                "sourcefile": "translationfile.cpp",
+                "status": 1,
+                "translatedtext": "JSON-Parsing der Übersetzungsdatei fehlgeschlagen."
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "I/O error while loading translation file.",
+                "sourcefile": "translationfile.cpp",
+                "status": 1,
+                "translatedtext": "I/O Fehler beim Laden der Übersetzungsdatei."
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "I/O error while creating PO file.",
+                "sourcefile": "translationfile.cpp",
+                "status": 1,
+                "translatedtext": "I/O Fehler beim Erstellen der PO Datei."
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "msgfmt tool not found. Please check the settings.",
+                "sourcefile": "translationfile.cpp",
+                "status": 1,
+                "translatedtext": "Das msgfmt Utility wurde nicht gefunden. Bitte Einstellungen prüfen."
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "MO file created successfully.",
+                "sourcefile": "translationfile.cpp",
+                "status": 1,
+                "translatedtext": "Die MO Datei wurde erfolgreich erstellt."
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Failed to create MO file. See log file for details: ",
+                "sourcefile": "translationfile.cpp",
+                "status": 1,
+                "translatedtext": "Fehler beim Erzeugen der MO Datei. Details in der Logdatei: "
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Project folder:",
+                "sourcefile": "translationdialog.cpp",
+                "status": 1,
+                "translatedtext": "Projektverzeichnis:"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Translation file:",
+                "sourcefile": "translationdialog.cpp",
+                "status": 1,
+                "translatedtext": "Übersetzungsdatei:"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Open translation file and review settings",
+                "sourcefile": "translationdialog.cpp",
+                "status": 1,
+                "translatedtext": "Übersetzungsdatei öffnen und Einstellungen prüfen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "File",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Datei"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Edit",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Bearbeiten"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Help",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Hilfe"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "&New\\tCtrl-N",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "&Neu\tCtrl-N"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "&Open\\tCtrl-O",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "&Öffnen\tCtrl-O"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "&Save\\tCtrl-S",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "&Sichern\tCtrl-S"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "&Save as",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "&Sichern unter"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "&Quit\\tCtrl-Q",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Beenden\tCtrl-Q"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "&Preferences",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "&Einstellungen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Create .mo file",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": ".mo Datei erzeugen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "&About",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "&Über"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Open translation file",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Übersetzungsdatei öffnen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Save translation file",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Übersetzungsdatei sichern"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Quit wxTranslator",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "wxTranslator beenden"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Application preferences",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Anwendungseinstellungen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Create .mo file from .wxtrans file",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": ".mo Datei aus .wxtrans Datei erzeugen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Move to previous text",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Zum vorigen Text gehen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Move to next text",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Zum nächsten Text gehen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Mark text as translated",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Text als übersetzt kennzeichnen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Exclude files/folders from\\nscanning, such as build\\ndirectories or third-party\\nlibraries:",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Dateien/Ordner vom Scan\nausschliessen, z.B. Build-\nVerzeichnisse oder 3rd-\nparty Libraries:"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Preferences",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Einstellungen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Translation project settings",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Projekteinstellungen für Übersetzung"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "wxTranslator files (*.wxtrans)|*.wxtrans",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "wxTranslator Dateien (*.wxtrans)|*.wxtrans"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "There are unsaved changes. Do you want to save them before exiting?",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Es gibt ungesicherte Änderungen. Möchten Sie diese vor dem Beenden sichern?"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "New text",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Neuer Text"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Untranslated",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Nicht übersetzt"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Translated",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Übersetzt"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Unknown",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Unbekannt"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "OK",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Bestätigen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Cancel",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Abbrechen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Create a new translation file",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Neue Übersetzungsdatei erstellen"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "About",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Über"
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "wxTranslator is a tool to help developers to create\\nand manage translation files for wxWidgets applications.",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "wxTranslator richtet sich an Entwickler um Übersetzungen\nfür wxWidgets Anwendungen zu erstellen."
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Credits go to Niels Lohmann for 'json.hpp'\\nhttps://json.nlohmann.me/\\nand to the wxWidgets community\\nhttps://wxwidgets.org/",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Credits gehen an Niels Lohmann für 'json.hpp'\nhttps://json.nlohmann.me\nund an die wxWidgets community\nhttps://wxwidgets.org"
+            }
+        }
+    ]
+}

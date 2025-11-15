@@ -35,7 +35,8 @@ int TranslationDialog::showDialog(TranslationFile* tf, displayMode mode) {
     m_tf = tf;
     m_fileSettings = {};
     m_fileSettings_tf = {};
-    constexpr int c_width = 600;
+    const int baseWidth = wxSystemSettings::GetMetric(wxSYS_SCREEN_X) / 4; 
+    //constexpr int c_width = 600;
     std::vector<wxControl*> dlgObjects{};
     int proportion, index = 0;
     int filePickerStyle = wxFLP_USE_TEXTCTRL | wxFLP_SMALL;;
@@ -44,13 +45,13 @@ int TranslationDialog::showDialog(TranslationFile* tf, displayMode mode) {
     auto* lbl_exclude_folders = new wxStaticText(m_dialog, wxID_ANY, TEXT_EXCLUDE_FOLDERS);
     auto* lbl_translation_file = new wxStaticText(m_dialog, wxID_ANY, _("Translation file:"));
     m_dirPicker = new wxDirPickerCtrl(m_dialog, wxID_ANY, "", "",
-    wxDefaultPosition, wxSize(c_width, -1),
-    wxDIRP_USE_TEXTCTRL | wxDIRP_SMALL | wxDIRP_DIR_MUST_EXIST);
+    wxDefaultPosition, wxSize(baseWidth, -1), wxDIRP_USE_TEXTCTRL | wxDIRP_SMALL | wxDIRP_DIR_MUST_EXIST);
+
     m_dirPicker->GetTextCtrl()->SetEditable(false);
     m_dirPicker->GetTextCtrl()->SetBackgroundColour(wxColour(255, 255, 255));
     m_dirPicker->Bind(wxEVT_DIRPICKER_CHANGED, &TranslationDialog::onDirChanged, this);
     m_filePicker = new wxFilePickerCtrl(m_dialog, wxID_ANY, wxEmptyString, wxEmptyString,
-        TRANSLATION_FILE_FILTER, wxDefaultPosition, wxSize(c_width, -1), filePickerStyle);
+        TRANSLATION_FILE_FILTER, wxDefaultPosition, wxSize(baseWidth, -1), filePickerStyle);
     m_filePicker->GetTextCtrl()->SetEditable(false);
     m_filePicker->GetTextCtrl()->SetBackgroundColour(wxColour(255, 255, 255));
     m_filePicker->Bind(wxEVT_FILEPICKER_CHANGED, &TranslationDialog::onFileChanged, this);
@@ -59,7 +60,9 @@ int TranslationDialog::showDialog(TranslationFile* tf, displayMode mode) {
     int w, h;
     dc.GetTextExtent("X", &w, &h);
     m_inp_exclusion = new wxTextCtrl(m_dialog, wxID_ANY, wxEmptyString,
-    wxDefaultPosition, wxSize(c_width, 4 * (h + 2)), wxTE_MULTILINE | wxTE_BESTWRAP);
+    wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxTE_BESTWRAP);
+    const int lineHeight = m_inp_exclusion->GetCharHeight();
+    m_inp_exclusion->SetMinSize(wxSize(baseWidth, (lineHeight + 3) * 4));    
     m_inp_exclusion->Clear();
     auto* buttonBox = new wxBoxSizer(wxHORIZONTAL);
     m_okButton = new wxButton(m_dialog, wxID_OK, CAP_OK);
@@ -111,7 +114,7 @@ int TranslationDialog::showDialog(TranslationFile* tf, displayMode mode) {
     return m_dialog->GetReturnCode();
 }
 
-file_settings TranslationDialog::getFileSettings() {
+mo_file_settings TranslationDialog::getFileSettings() {
     return m_fileSettings;
 }
 

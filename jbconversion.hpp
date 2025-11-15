@@ -39,3 +39,20 @@ inline std::string escapeSpecials(const std::string& input) {
     }
     return result;
 }
+
+inline std::string unescapeSpecials(const std::string& input) {
+    std::string result = input;
+    size_t pos = 0;
+    // \\n → \n
+    while ((pos = result.find("\\n", pos)) != std::string::npos) {
+        result.replace(pos, 2, "\n");
+        pos += 1;
+    }
+    pos = 0;
+    // \\t → \t
+    while ((pos = result.find("\\t", pos)) != std::string::npos) {
+        result.replace(pos, 2, "\t");
+        pos += 1;
+    }
+    return result;
+}

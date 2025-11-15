@@ -40,7 +40,7 @@ void AboutDialog::showDialog() {
     wxStaticText* lbl_credits = new wxStaticText(m_dialog, wxID_ANY, DIALOG_CREDITS,
         wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
     mainSizer->Add(lbl_credits, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, c_padding);
-    wxButton* btnOK = new wxButton(m_dialog, wxID_OK, CAP_OK);
+    wxButton* btnOK = new wxButton(m_dialog, wxID_OK, CAP_CLOSE);
     mainSizer->Add(btnOK, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, c_padding);
     m_dialog->SetSizerAndFit(mainSizer);
     m_dialog->Layout();

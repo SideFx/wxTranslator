@@ -30,7 +30,7 @@ private:
     void onEditMakeMoFile(wxCommandEvent& event);
     void onFileExit(wxCommandEvent& event);
     void onHelpAbout(wxCommandEvent& event);
-    int showMessage(const message& m);
+    int showMessage(const mo_message& m);
     void scanProjectFolder();
     void onClose(wxCloseEvent& event);
     void onSplitterSashMoved(wxSplitterEvent& event);
@@ -50,7 +50,7 @@ private:
     void resetData();
     void setFunctionsEnabled(bool enabled);
 
-    std::vector<single_translation> m_scans{};
+    std::vector<mo_single_translation> m_scans{};
     const int c_toolBarIconSize = 18;
     const int c_minLeftPanelSize = 300;
     const int c_maxLeftPanelSize = 600;

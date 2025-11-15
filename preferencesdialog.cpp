@@ -23,8 +23,9 @@ PreferencesDialog::PreferencesDialog(wxFrame* parent) {
 
 PreferencesDialog::~PreferencesDialog() = default;
 
-int PreferencesDialog::showDialog(app_settings preferences) {
+int PreferencesDialog::showDialog(mo_app_settings preferences) {
     m_prefs = std::move(preferences);
+    const int baseWidth = wxSystemSettings::GetMetric(wxSYS_SCREEN_X) / 4;
     auto* vBoxSizer = new wxBoxSizer(wxVERTICAL);
     auto* gridBagSizer = new wxGridBagSizer(10, 10);
     vBoxSizer->Add(gridBagSizer, 1, wxEXPAND | wxALL, 30);
@@ -44,14 +45,14 @@ int PreferencesDialog::showDialog(app_settings preferences) {
     auto* lbl_exclude_folders = new wxStaticText(m_dialog, wxID_ANY, TEXT_EXCLUDE_FOLDERS);
     gridBagSizer->Add(lbl_exclude_folders, wxGBPosition(1, 0),
         wxDefaultSpan, wxALIGN_CENTER_VERTICAL);
-    wxClientDC dc(m_dialog);
-    dc.SetFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT));
-    int w, h;
-    dc.GetTextExtent("X", &w, &h);
     m_inp_exclusion = new wxTextCtrl(m_dialog, wxID_ANY, wxEmptyString,
-    wxDefaultPosition, wxSize(200, 3 * (h + 2)), wxTE_MULTILINE | wxTE_BESTWRAP);
+    wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxTE_BESTWRAP);
+    int lineHeight = m_inp_exclusion->GetCharHeight();
+    m_inp_exclusion->SetMinSize(wxSize(baseWidth, (lineHeight + 3) * 4));
     m_inp_exclusion->SetValue(m_prefs.exclude_folders);
     gridBagSizer->Add(m_inp_exclusion, wxGBPosition(1, 1), wxDefaultSpan, wxEXPAND);
+
+    /*
     auto* lbl_msgfmt_path = new wxStaticText(m_dialog, wxID_ANY, _("Path to msgfmt tool:"));
     gridBagSizer->Add(lbl_msgfmt_path, wxGBPosition(2, 0),
         wxDefaultSpan, wxALIGN_CENTER_VERTICAL);
@@ -60,6 +61,8 @@ int PreferencesDialog::showDialog(app_settings preferences) {
        wxFLP_USE_TEXTCTRL | wxFLP_SMALL | wxFLP_FILE_MUST_EXIST);
     m_filePicker->SetFileName(toWxString(m_prefs.msgfmt_path));
     gridBagSizer->Add(m_filePicker, wxGBPosition(2, 1), wxDefaultSpan, wxEXPAND);
+    */
+
     auto* buttonBox = new wxBoxSizer(wxHORIZONTAL);
     auto* btn_ok = new wxButton(m_dialog, wxID_OK, CAP_OK);
     btn_ok->Bind(wxEVT_BUTTON, &PreferencesDialog::onOkClicked, this);
@@ -67,7 +70,7 @@ int PreferencesDialog::showDialog(app_settings preferences) {
     btn_cancel->Bind(wxEVT_BUTTON, &PreferencesDialog::onCancelClicked, this);
     buttonBox->Add(btn_ok);
     buttonBox->Add(btn_cancel);
-    gridBagSizer->Add(buttonBox, wxGBPosition(3, 1), wxDefaultSpan, wxEXPAND | wxALIGN_RIGHT);
+    gridBagSizer->Add(buttonBox, wxGBPosition(2, 1), wxDefaultSpan, wxEXPAND | wxALIGN_RIGHT);
     m_dialog->SetSizerAndFit(vBoxSizer);
     m_dialog->Layout();
     m_dialog->Fit();
@@ -76,13 +79,13 @@ int PreferencesDialog::showDialog(app_settings preferences) {
     return m_dialog->GetReturnCode();
 }
 
-app_settings PreferencesDialog::getPreferences() {
+mo_app_settings PreferencesDialog::getPreferences() {
     return m_prefs;
 }
 
 void PreferencesDialog::onOkClicked(wxCommandEvent& event) {
     m_prefs.exclude_folders = toStdString(m_inp_exclusion->GetValue()); ;
-    m_prefs.msgfmt_path = toStdString(m_filePicker->GetFileName().GetFullPath());;
+    //m_prefs.msgfmt_path = toStdString(m_filePicker->GetFileName().GetFullPath());;
     for (auto& ch : m_extensionBoxes) {
         for (auto& p : m_prefs.extensions) {
             if (p.first == toStdString(ch->GetName())) {

@@ -26,6 +26,8 @@ add_executable(wxTranslator WIN32
         aboutdialog.cpp
         aboutdialog.h
         jbconversion.hpp
+        mobuilder.cpp
+        mobuilder.h
         logo.hpp
 )
 endif()
@@ -53,6 +55,8 @@ add_executable(wxTranslator
         aboutdialog.cpp
         aboutdialog.h
         jbconversion.hpp
+        mobuilder.cpp
+        mobuilder.h
         logo.hpp
         app.icns
 )
@@ -66,20 +70,20 @@ if(WIN32)
         file(MAKE_DIRECTORY ${TRANSLATION_DIR})
     endif()
 
-    if(EXISTS "${CMAKE_SOURCE_DIR}/wxTranslate_DE.mo")
-        add_custom_command(TARGET wxTranslator POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy
-                "${CMAKE_SOURCE_DIR}/wxTranslate_DE.mo"
-                "${TRANSLATION_DIR}/wxTranslate_DE.mo"
-        )
-    endif()
+#    if(EXISTS "${CMAKE_SOURCE_DIR}/wxTranslate_DE.mo")
+#        add_custom_command(TARGET wxTranslator POST_BUILD
+#            COMMAND ${CMAKE_COMMAND} -E copy
+#                "${CMAKE_SOURCE_DIR}/wxTranslate_DE.mo"
+#                "${TRANSLATION_DIR}/wxTranslate_DE.mo"
+#        )
+#    endif()
 endif()
 
 if(APPLE)
-    set(MACOSX_BUNDLE_ICON_FILE app.icns)
-    set_source_files_properties(app.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
-    set_target_properties(wxTranslator PROPERTIES
-        MACOSX_BUNDLE TRUE
-        RESOURCE app.icns
-    )
+#    set(MACOSX_BUNDLE_ICON_FILE app.icns)
+#    set_source_files_properties(app.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+#    set_target_properties(wxTranslator PROPERTIES
+#        MACOSX_BUNDLE TRUE
+#        RESOURCE app.icns
+#    )
 endif()

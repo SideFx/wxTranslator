@@ -22,14 +22,14 @@ public:
     void loadPreferences();
     void savePreferences();
     void openPreferencesDialog();
-    app_settings getAppSettings();
+    mo_app_settings getAppSettings();
 
 private:
     // private constructor with parent MainFrame
     explicit AppSettings(MainWindow* mainWin);
 
     MainWindow* m_mainWindow = nullptr;
-    app_settings m_prefs;
+    mo_app_settings m_prefs;
     std::string m_prefsPath;
 
     const int c_windowHeight = 800;

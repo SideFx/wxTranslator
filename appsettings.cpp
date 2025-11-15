@@ -50,25 +50,23 @@ void AppSettings::savePreferences() {
     j[CONFIG_WINDOW]["m"] = m_prefs.coordinates.maximized;
     j[CONFIG_WINDOW]["s"] = m_prefs.coordinates.sashpos;
     j[CONFIG_COMMON][CONFIG_COMMON_EXCLUSION] = m_prefs.exclude_folders;
-    j[CONFIG_COMMON][CONFIG_COMMON_MSGFMT] = m_prefs.msgfmt_path;
     for (const auto& ex : m_prefs.extensions) {
         j[CONFIG_COMMON][CONFIG_COMMON_EXTENSION + ex.first] = ex.second;
     }
-    std::ofstream o(fullPath);
-    if (o.good()) {
-        o << std::setw(4) << j << std::endl;
-        o.close();
+    std::ofstream ofs(fullPath);
+    if (ofs.is_open()) {
+        ofs << std::setw(4) << j << std::endl;
+        ofs.close();
     }
 }
 
 void AppSettings::loadPreferences() {
     const std::string fullPath = m_prefsPath + getPathSeparator() + APP_VENDOR + "." + APP_NAME + FILE_EXT_JSON;
-    std::ifstream i(fullPath);
-    if (i.good()) {
+    std::ifstream ifs(fullPath);
+    if (ifs.is_open()) {
         try {
-            json j = json::parse(i);
-            i.close();
-            m_prefs.msgfmt_path = j[CONFIG_COMMON][CONFIG_COMMON_MSGFMT];
+            json j = json::parse(ifs);
+            ifs.close();
             m_prefs.exclude_folders = j[CONFIG_COMMON][CONFIG_COMMON_EXCLUSION];
             m_prefs.coordinates.pos_x = j[CONFIG_WINDOW]["x"];
             m_prefs.coordinates.pos_y = j[CONFIG_WINDOW]["y"];
@@ -110,6 +108,6 @@ void AppSettings::openPreferencesDialog() {
     delete dlg;
 }
 
-app_settings AppSettings::getAppSettings() {
+mo_app_settings AppSettings::getAppSettings() {
     return m_prefs;
 }

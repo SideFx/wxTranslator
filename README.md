@@ -9,7 +9,6 @@ wxTranslator is a tool that helps developers create and manage translation files
 ![Screenshot](images/img02.png)
 - Select C++ file extensions to scan
 - Choose files/folders to exclude from scanning
-- Specify the path to the `msgfmt` utility
 
 ### Create a New Translation File
 ![Screenshot](images/img03.png)
@@ -35,7 +34,7 @@ Don't forget to save the translation file when you're done.
 Click the highlighted toolbar icon to generate the final `.MO` file:  
 ![Screenshot](images/img07.png)
 
-This will first create the corresponding `.PO` file and then call the `msgfmt` tool to generate the final `.MO` file.
+This will generate the final machine object `.MO` file.
 
 wxTranslator was used to generate its German translation:  
 ![Screenshot](images/img06.png)
@@ -50,7 +49,7 @@ wxTranslator was used to generate its German translation:
 Added presets for Windows arm64 and msys2 clangarm64 toolchain to CMakePresets.json. Obviously there's no reliable method to detect the processor architecture in CMake at the moment. Tried a quirky workaround using PROCESSOR_IDENTIFIER, which works at least on my machines.
 
 2025-11-14:
-Added presets for MacOS to CMakePresets.json. Made adaptions to CMakeLists.txt accordingly. Stored sash position in app preferences. Added default xy-offset and window size for Mainwindow at first startup. New shell script for MSYS2 setup on Windows arm64. Created MacOS app.icns.
+Added presets for macOS to CMakePresets.json. Made adaptions to CMakeLists.txt accordingly. Stored sash position in app preferences. Added default xy-offset and window size for Mainwindow at first startup. New shell script for MSYS2 setup on Windows arm64. Created macOS app.icns.
 
-
+2025-11-15: Added logic to internally generate the machine object `.MO` file without requiring external utilities like `MSGFMT`. Updated the macOS app.icns. Numerous UI changes to improve macOS compatibility. Discovered that the build process on macOS produces flawed info.plist files [MacOS Tahoe 26.1: FilePicker and DirPicker not working #25973](https://github.com/wxWidgets/wxWidgets/issues/25973#issuecomment-3533524803), so removed the `MACOSX_BUNDLE` option from CMakeLists.txt as a workaround. 
 

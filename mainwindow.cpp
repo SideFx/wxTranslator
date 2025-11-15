@@ -107,7 +107,7 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, wxEmptyString) {
         wxDefaultSize, wxEXPAND); 
     rightSizer->Add(lbl_originalText, 0, wxEXPAND | wxRIGHT | wxLEFT, c_hPadding);
     m_originalText = new wxTextCtrl(rightPanel, wxID_ANY, wxEmptyString,
-        wxDefaultPosition, wxSize(-1, 4 * (h + 2)), wxTE_MULTILINE | wxTE_BESTWRAP | wxTE_READONLY);
+        wxDefaultPosition, wxSize(-1, 4 * (h + 2)), wxTE_MULTILINE | wxTE_BESTWRAP | wxTE_READONLY);    
     rightSizer->Add(m_originalText, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, c_hPadding);
     auto* gridBagSizer = new wxGridBagSizer(0, 0);
     auto* lbl_translatedText = new wxStaticText(rightPanel, wxID_ANY, _("Translated text:"), wxDefaultPosition,
@@ -123,7 +123,7 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, wxEmptyString) {
     m_tbText->AddSeparator();
     m_tbText->AddTool(ID_SET_TRANSLATED, wxEmptyString, IconPool::getBitmapBundleByName("MISC_CHECK", c_toolBarIconSize), 
         TIP_SET_TRANSLATED);
-    m_tbText->EnableTool(ID_SET_TRANSLATED, false);    
+    m_tbText->EnableTool(ID_SET_TRANSLATED, false);
     m_tbText->Realize();
     m_tbText->Bind(wxEVT_TOOL, &MainWindow::onMoveToPreviousText, this, ID_MOVE_UP);
     m_tbText->Bind(wxEVT_TOOL, &MainWindow::onMoveToNextText, this, ID_MOVE_DOWN);
@@ -133,7 +133,15 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, wxEmptyString) {
     rightSizer->Add(gridBagSizer, 0, wxEXPAND | wxRIGHT | wxLEFT, c_hPadding);
     m_translatedText = new wxTextCtrl(rightPanel, wxID_ANY, wxEmptyString,
         wxDefaultPosition, wxSize(-1, 4 * (h + 2)), wxTE_MULTILINE | wxTE_BESTWRAP);
-    m_translatedText->Bind(wxEVT_TEXT, &MainWindow::onTranslatedTextChanged, this);    
+    m_translatedText->SetEditable(false); 
+    m_translatedText->SetBackgroundColour(wxColour(255, 255, 255));   
+    m_translatedText->Bind(wxEVT_TEXT, &MainWindow::onTranslatedTextChanged, this); 
+    m_translatedText->Bind(wxEVT_CHAR, [=](wxKeyEvent& event) {
+        if (event.GetKeyCode() == WXK_RETURN || event.GetKeyCode() == WXK_NUMPAD_ENTER) {
+            return; // ignore Enter key
+        }
+        event.Skip(); 
+    });
     rightSizer->Add(m_translatedText, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, c_hPadding);
     leftPanel->SetSizer(leftSizer);
     rightPanel->SetSizer(rightSizer);
@@ -143,9 +151,6 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, wxEmptyString) {
     Bind(wxEVT_CLOSE_WINDOW, &MainWindow::onClose, this);
     Bind(wxEVT_SIZE, &MainWindow::onResize, this);
     m_appTitle = wxString(APP_NAME) + SPACE  + wxString(APP_VERSION );
-    #ifdef __WXMSW__
-        SetMinSize(wxSize(1280, 800));
-    #endif
     wxTopLevelWindowBase::Layout();
     resetData();
     m_appSettings = &AppSettings::instance(this);
@@ -166,16 +171,17 @@ void MainWindow::resetData() {
     m_txtFileName->Clear();
     m_originalTextListBox->DeleteAllItems();
     m_originalText->Clear();
-    m_translatedText->Clear();
+    m_translatedText->ChangeValue("");
     setFunctionsEnabled(false);
     wxFrameBase::SetTitle(m_appTitle);
 }
 
 void MainWindow::onResize(wxSizeEvent& event) {
-    m_originalTextListBox->SetColumnWidth(1, 
-        m_originalTextListBox->GetParent()->GetSize().GetWidth() - 
-        m_originalTextListBox->GetColumnWidth(0));
     event.Skip();
+    const int totalWidth = m_originalTextListBox->GetClientSize().GetWidth();
+    const int firstColWidth = 200;
+    const int secondColWidth = totalWidth - firstColWidth;
+    m_originalTextListBox->SetColumnWidth(1, secondColWidth);
 }   
 
 void MainWindow::scanProjectFolder() {
@@ -200,7 +206,7 @@ void MainWindow::scanProjectFolder() {
 }
 
 void MainWindow::getTranslationsFromFile() {
-    std::vector<single_translation> translations = m_translationFile.getTranslations();
+    std::vector<mo_single_translation> translations = m_translationFile.getTranslations();
     for (auto& scan : m_scans) {
         bool found = false;
         for (auto& trans : translations) {
@@ -268,7 +274,7 @@ void MainWindow::showDataForTextIndex(int textIndex) {
             index++;
             if (textIndex == index) {
                 m_originalText->SetValue(toWxString(st.original));
-                m_translatedText->SetValue(toWxString(st.translation));
+                m_translatedText->ChangeValue(toWxString(st.translation)); // do not trigger event
                 m_tbText->EnableTool(ID_SET_TRANSLATED, !m_translatedText->GetValue().IsEmpty());
                 return;
             }
@@ -279,13 +285,13 @@ void MainWindow::showDataForTextIndex(int textIndex) {
 void MainWindow::onFileNew(wxCommandEvent& event) {
     if (!dialogUnsavedChanges()) return;
     resetData();
-    file_settings fs{.exclude_folders = m_appSettings->getAppSettings().exclude_folders};
+    mo_file_settings fs{.exclude_folders = m_appSettings->getAppSettings().exclude_folders};
     m_translationFile.setSettings(fs);
     auto* dlg = new TranslationDialog(this);
     int result = dlg->showDialog(&m_translationFile, wxNEW);
     delete dlg;
     if (result == wxID_OK) {
-        const message m = m_translationFile.getMessage();
+        const mo_message m = m_translationFile.getMessage();
         if (!m.message.empty()) showMessage(m);
         if (m.mtype != error) {
             scanProjectFolder();
@@ -296,6 +302,7 @@ void MainWindow::onFileNew(wxCommandEvent& event) {
             m_translationFile.setDirty(true);
             setTitleWithFileName();
             setFunctionsEnabled(true);
+            m_translatedText->SetEditable(true); 
             return;
         }
     }
@@ -308,7 +315,7 @@ void MainWindow::onFileOpen(wxCommandEvent& event) {
     int result = dlg->showDialog(&m_translationFile, wxOPEN);
     delete dlg;
     if (result == wxID_OK) {
-        const message m = m_translationFile.getMessage();
+        const mo_message m = m_translationFile.getMessage();
         if (!m.message.empty()) showMessage(m);
         if (m.mtype != error) {
             scanProjectFolder();
@@ -318,6 +325,7 @@ void MainWindow::onFileOpen(wxCommandEvent& event) {
             m_toolBar->EnableTool(wxID_SAVE, true);
             setTitleWithFileName();
             setFunctionsEnabled(true);
+            m_translatedText->SetEditable(true); 
             return;
         }
     }
@@ -326,7 +334,7 @@ void MainWindow::onFileOpen(wxCommandEvent& event) {
 void MainWindow::onFileSave(wxCommandEvent& event) { 
     m_translationFile.setTranslations(m_scans);
     if (!m_translationFile.save(m_translationFile.getSettings().file_name)) {
-        message m = m_translationFile.getMessage();
+        mo_message m = m_translationFile.getMessage();
         if (!m.message.empty()) showMessage(m);
     }
 }
@@ -342,7 +350,7 @@ void MainWindow::onEditPreferences(wxCommandEvent& event) {
 void MainWindow::onEditMakeMoFile(wxCommandEvent& event) {
     m_translationFile.setTranslations(m_scans);
     m_translationFile.createMoFile();
-    message m = m_translationFile.getMessage();
+    mo_message m = m_translationFile.getMessage();
     if (!m.message.empty()) showMessage(m);
 }
 
@@ -395,6 +403,7 @@ void MainWindow::onSetTextAsTranslated(wxCommandEvent& event) {
 void MainWindow::onTranslatedTextChanged(wxCommandEvent& event) {
     wxString text = event.GetString();
     m_tbText->EnableTool(ID_SET_TRANSLATED, !text.IsEmpty());
+    m_translationFile.setDirty(true);
 }
 
 void MainWindow::onClose(wxCloseEvent& event) {
@@ -417,12 +426,12 @@ void MainWindow::onOriginalTextListBoxSelection(wxListEvent& event) {
 }
 
 void MainWindow::onSplitterSashMoved(wxSplitterEvent& event) {
+    event.Skip();
     int newPos = event.GetSashPosition();
     if (newPos > c_maxLeftPanelSize) event.SetSashPosition(c_maxLeftPanelSize);
-    event.Skip(false);
 }
 
-int MainWindow::showMessage(const message& m) {
+int MainWindow::showMessage(const mo_message& m) {
     long style;
     switch (m.mtype) {
         case information: style = wxICON_INFORMATION | wxOK;
@@ -433,7 +442,7 @@ int MainWindow::showMessage(const message& m) {
             break;
         default: style = wxICON_ERROR | wxOK;
     }
-    auto* dlg = new wxMessageDialog(this, m.message, APP_NAME, style);
+    auto* dlg = new wxMessageDialog(this, toWxString(m.message), APP_NAME, style);
     dlg->CenterOnParent();
     int res = dlg->ShowModal();
     delete dlg;
@@ -451,7 +460,7 @@ void MainWindow::setTitleWithFileName() {
 
 bool MainWindow::dialogUnsavedChanges() {
     if (m_translationFile.getDirty()) {
-        message m{
+        mo_message m{
             .mtype = question,
             .message = toStdString(TEXT_UNSAVED_CHANGES)
         };
@@ -461,7 +470,7 @@ bool MainWindow::dialogUnsavedChanges() {
         } else if (res == wxID_YES) {
             m_translationFile.setTranslations(m_scans);
             if (!m_translationFile.save(m_translationFile.getSettings().file_name)) {
-                message m = m_translationFile.getMessage();
+                mo_message m = m_translationFile.getMessage();
                 if (!m.message.empty()) showMessage(m);
                 return false;
             }

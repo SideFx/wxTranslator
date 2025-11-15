@@ -23,7 +23,6 @@
 #define MENU_FILE_NEW _("&New\tCtrl-N")
 #define MENU_FILE_OPEN _("&Open\tCtrl-O")
 #define MENU_FILE_SAVE _("&Save\tCtrl-S")
-#define MENU_FILE_SAVE_AS _("&Save as")
 #define MENU_FILE_EXIT _("&Quit\tCtrl-Q")
 
 #define MENU_EDIT_PREFERENCES _("&Preferences")
@@ -35,7 +34,7 @@
 #define TIP_FILE_SAVE _("Save translation file")
 #define TIP_FILE_EXIT _("Quit wxTranslator")
 #define TIP_EDIT_PREFERENCES _("Application preferences")
-#define TIP_EDIT_MAKE_MO_FILE _("Create .mo file from .wxtrans file")
+#define TIP_EDIT_MAKE_MO_FILE _("Create machine object (.mo) file")
 #define TIP_PREVIOUS_TEXT _("Move to previous text")
 #define TIP_NEXT_TEXT _("Move to next text")
 #define TIP_SET_TRANSLATED _("Mark text as translated")
@@ -49,7 +48,6 @@
 #define CONFIG_WINDOW_SPLITTER1 "window/splitter1/sash"
 #define CONFIG_COMMON "common"
 #define CONFIG_COMMON_EXTENSION "extension"
-#define CONFIG_COMMON_MSGFMT "msgfmtpath"
 #define CONFIG_COMMON_EXCLUSION "exclusion"
 #define CONFIG_COMMON_PROJECTFOLDER "projectfolder"
 #define CONFIG_COMMON_FILENAME "filename"
@@ -61,7 +59,9 @@
 #define CONFIG_TRANSLATION_STATUS "status"
 
 #define FILE_EXT_JSON ".json"
-#define FILE_EXT_PO ".po"
+#define FILE_EXT_WXTRANS ".wxtrans"
+#define FILE_EXT_MO ".mo"
+
 #define TRANSLATION_FILE_FILTER _("wxTranslator files (*.wxtrans)|*.wxtrans")
 
 #define TEXT_UNSAVED_CHANGES _("There are unsaved changes. Do you want to save them before exiting?")
@@ -73,6 +73,8 @@
 
 #define CAP_OK _("OK")
 #define CAP_CANCEL _("Cancel") 
+#define CAP_CLOSE _("Close")
+
 #define UNI_CREATE_TRANSLATION_FILE _("Create a new translation file")
 #define UNI_HELP_ABOUT _("About") + SPACE + APP_NAME
 
