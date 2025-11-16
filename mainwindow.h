@@ -49,6 +49,7 @@ private:
     void setTitleWithFileName();
     void resetData();
     void setFunctionsEnabled(bool enabled);
+    void fixColumnWidth();
 
     std::vector<mo_single_translation> m_scans{};
     const int c_toolBarIconSize = 18;

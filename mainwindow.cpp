@@ -96,10 +96,9 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, wxEmptyString) {
     m_originalTextListBox = new wxListCtrl(rightPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
         wxLC_REPORT | wxLC_SINGLE_SEL, wxDefaultValidator, wxEmptyString);
     m_originalTextListBox->InsertColumn(0, _("Status"), wxLIST_FORMAT_LEFT, 200);
-    m_originalTextListBox->InsertColumn(1, _("Source Text"), wxLIST_FORMAT_LEFT, 800);    
+    m_originalTextListBox->InsertColumn(1, _("Source Text"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE);    
     m_originalTextListBox->Bind(wxEVT_LIST_ITEM_SELECTED, &MainWindow::onOriginalTextListBoxSelection, this);    
-    rightSizer->Add(m_originalTextListBox, 1, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, c_hPadding);
-    
+    rightSizer->Add(m_originalTextListBox, 1, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, c_hPadding);    
     auto* lbl_originalText = new wxStaticText(rightPanel, wxID_ANY, _("Selected source text:"), wxDefaultPosition,
         wxDefaultSize, wxEXPAND); 
     rightSizer->Add(lbl_originalText, 0, wxEXPAND | wxRIGHT | wxLEFT, c_hPadding);
@@ -176,15 +175,23 @@ void MainWindow::resetData() {
     wxFrameBase::SetTitle(m_appTitle);
 }
 
-void MainWindow::onResize(wxSizeEvent& event) {
-    event.Skip();
+void MainWindow::fixColumnWidth() {
     const int totalWidth = m_originalTextListBox->GetClientSize().GetWidth();
-    const int firstColWidth = 200;
+    int firstColWidth = 200;
+    #if defined(__WXMAC__)
+        firstColWidth = 150;
+    #endif
     const int secondColWidth = totalWidth - firstColWidth;
     m_originalTextListBox->SetColumnWidth(1, secondColWidth);
+}
+
+void MainWindow::onResize(wxSizeEvent& event) {
+    event.Skip();
+    fixColumnWidth(); 
 }   
 
 void MainWindow::scanProjectFolder() {
+    fixColumnWidth(); // fix wxListCtrl column width on macOS
     m_selectedFile = "";
     auto sc = new Scanner(&m_translationFile);
     m_scans = sc->scanFolder();
@@ -192,14 +199,19 @@ void MainWindow::scanProjectFolder() {
     m_fileListBox->Clear();
     std:: string path{};
     bool b = false;
+    std::vector<std::string> allPaths{};
     for (const auto& m : m_scans) {
         if (path != m.source_file) {
             path = m.source_file;
-            m_fileListBox->AppendString(path);
+            allPaths.push_back(path);
             b = true;
         }
     }
     if (b) {
+        std::stable_sort(allPaths.begin(), allPaths.end(), [](const std::string &a, const std::string &b) {
+            return a < b;
+        });
+        for (auto& p : allPaths) m_fileListBox->AppendString(toWxString(p));
         m_fileListBox->SetSelection(0);
         m_selectedFile = m_fileListBox->GetString(0);
     }
