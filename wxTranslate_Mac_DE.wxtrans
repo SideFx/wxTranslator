@@ -1,7 +1,7 @@
 {
     "common": {
-        "exclusion": "build*\njson.hpp",
-        "filename": "/Users/jan/Developer/VS Code/wxWidgets/wxTranslator/wxTranslate_DE.wxtrans",
+        "exclusion": "/build*\njson.hpp",
+        "filename": "/Users/jan/Developer/VS Code/wxWidgets/wxTranslator/wxTranslate_Mac_DE.wxtrans",
         "projectfolder": "/Users/jan/Developer/VS Code/wxWidgets/wxTranslator"
     },
     "translationarray": [
@@ -10,15 +10,23 @@
                 "originaltext": "Scan files for wx translation\\nmacros:",
                 "sourcefile": "preferencesdialog.cpp",
                 "status": 1,
-                "translatedtext": "Dateien nach wx Übersetzungs-\nMacros scannen:"
+                "translatedtext": "Dateien nach wx Übersetzungs-\\nMacros scannen:"
             }
         },
         {
             "translation": {
-                "originaltext": "Path to msgfmt tool:",
-                "sourcefile": "preferencesdialog.cpp",
+                "originaltext": "I/O error while saving machine object (.mo) file.",
+                "sourcefile": "mobuilder.cpp",
                 "status": 1,
-                "translatedtext": "Pfad zum msgfmt Utiltity:"
+                "translatedtext": "I/O Fehler beim Sichern der Machine Object (.mo) Datei."
+            }
+        },
+        {
+            "translation": {
+                "originaltext": "Machine object (.mo) file has been created.",
+                "sourcefile": "mobuilder.cpp",
+                "status": 1,
+                "translatedtext": "Die Machine Object (.mo) Datei wurde erzeugt."
             }
         },
         {
@@ -103,38 +111,6 @@
         },
         {
             "translation": {
-                "originaltext": "I/O error while creating PO file.",
-                "sourcefile": "translationfile.cpp",
-                "status": 1,
-                "translatedtext": "I/O Fehler beim Erstellen der PO Datei."
-            }
-        },
-        {
-            "translation": {
-                "originaltext": "msgfmt tool not found. Please check the settings.",
-                "sourcefile": "translationfile.cpp",
-                "status": 1,
-                "translatedtext": "Das msgfmt Utility wurde nicht gefunden. Bitte Einstellungen prüfen."
-            }
-        },
-        {
-            "translation": {
-                "originaltext": "MO file created successfully.",
-                "sourcefile": "translationfile.cpp",
-                "status": 1,
-                "translatedtext": "Die MO Datei wurde erfolgreich erstellt."
-            }
-        },
-        {
-            "translation": {
-                "originaltext": "Failed to create MO file. See log file for details: ",
-                "sourcefile": "translationfile.cpp",
-                "status": 1,
-                "translatedtext": "Fehler beim Erzeugen der MO Datei. Details in der Logdatei: "
-            }
-        },
-        {
-            "translation": {
                 "originaltext": "Project folder:",
                 "sourcefile": "translationdialog.cpp",
                 "status": 1,
@@ -186,7 +162,7 @@
                 "originaltext": "&New\\tCtrl-N",
                 "sourcefile": "definitions.h",
                 "status": 1,
-                "translatedtext": "&Neu\tCtrl-N"
+                "translatedtext": "&Neu\\tCtrl-N"
             }
         },
         {
@@ -194,7 +170,7 @@
                 "originaltext": "&Open\\tCtrl-O",
                 "sourcefile": "definitions.h",
                 "status": 1,
-                "translatedtext": "&Öffnen\tCtrl-O"
+                "translatedtext": "&Öffnen\\tCtrl-O"
             }
         },
         {
@@ -202,15 +178,7 @@
                 "originaltext": "&Save\\tCtrl-S",
                 "sourcefile": "definitions.h",
                 "status": 1,
-                "translatedtext": "&Sichern\tCtrl-S"
-            }
-        },
-        {
-            "translation": {
-                "originaltext": "&Save as",
-                "sourcefile": "definitions.h",
-                "status": 1,
-                "translatedtext": "&Sichern unter"
+                "translatedtext": "&Sichern\\tCtrl-S"
             }
         },
         {
@@ -218,7 +186,7 @@
                 "originaltext": "&Quit\\tCtrl-Q",
                 "sourcefile": "definitions.h",
                 "status": 1,
-                "translatedtext": "Beenden\tCtrl-Q"
+                "translatedtext": "Beenden\\tCtrl-Q"
             }
         },
         {
@@ -279,10 +247,10 @@
         },
         {
             "translation": {
-                "originaltext": "Create .mo file from .wxtrans file",
+                "originaltext": "Create machine object (.mo) file",
                 "sourcefile": "definitions.h",
                 "status": 1,
-                "translatedtext": ".mo Datei aus .wxtrans Datei erzeugen"
+                "translatedtext": "Machine Object (.mo) Datei erzeugen"
             }
         },
         {
@@ -314,7 +282,7 @@
                 "originaltext": "Exclude files/folders from\\nscanning, such as build\\ndirectories or third-party\\nlibraries:",
                 "sourcefile": "definitions.h",
                 "status": 1,
-                "translatedtext": "Dateien/Ordner vom Scan\nausschliessen, z.B. Build-\nVerzeichnisse oder 3rd-\nparty Libraries:"
+                "translatedtext": "Dateien/Ordner vom Scan\\nausschliessen, z.B. Build-\\nVerzeichnisse oder 3rd-\\nparty Libraries:"
             }
         },
         {
@@ -399,6 +367,14 @@
         },
         {
             "translation": {
+                "originaltext": "Close",
+                "sourcefile": "definitions.h",
+                "status": 1,
+                "translatedtext": "Schliessen"
+            }
+        },
+        {
+            "translation": {
                 "originaltext": "Create a new translation file",
                 "sourcefile": "definitions.h",
                 "status": 1,
@@ -418,7 +394,7 @@
                 "originaltext": "wxTranslator is a tool to help developers to create\\nand manage translation files for wxWidgets applications.",
                 "sourcefile": "definitions.h",
                 "status": 1,
-                "translatedtext": "wxTranslator richtet sich an Entwickler um Übersetzungen\nfür wxWidgets Anwendungen zu erstellen."
+                "translatedtext": "wxTranslator richtet sich an Entwickler um Übersetzungen\\nfür wxWidgets Anwendungen zu erstellen."
             }
         },
         {
@@ -426,7 +402,7 @@
                 "originaltext": "Credits go to Niels Lohmann for 'json.hpp'\\nhttps://json.nlohmann.me/\\nand to the wxWidgets community\\nhttps://wxwidgets.org/",
                 "sourcefile": "definitions.h",
                 "status": 1,
-                "translatedtext": "Credits gehen an Niels Lohmann für 'json.hpp'\nhttps://json.nlohmann.me\nund an die wxWidgets community\nhttps://wxwidgets.org"
+                "translatedtext": "Credits gehen an Niels Lohmann für ‘json.hpp’\\nhttps://json.nlohmann.me\\nund an die wxWidgets\\ncommunity\\nhttps://wxwidgets.org"
             }
         }
     ]
