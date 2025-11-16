@@ -74,6 +74,6 @@ if(APPLE)
     set_target_properties(wxTranslator PROPERTIES
         MACOSX_BUNDLE TRUE
         RESOURCE app.icns
-        MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/info.plist
+        MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/Info.plist
     )
 endif()
