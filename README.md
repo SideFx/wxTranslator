@@ -53,4 +53,4 @@ Added presets for macOS to CMakePresets.json. Made adaptions to CMakeLists.txt a
 
 2025-11-15: Added logic to internally generate the machine object `.MO` file without requiring external utilities like `MSGFMT`. Updated the macOS app.icns. Numerous UI changes to improve macOS compatibility. Discovered that the build process on macOS produces flawed info.plist files [MacOS Tahoe 26.1: FilePicker and DirPicker not working #25973](https://github.com/wxWidgets/wxWidgets/issues/25973#issuecomment-3533524803), so removed the `MACOSX_BUNDLE` option from CMakeLists.txt as a workaround. 
 
-2025-11-16: Fixed wxListCtrl column width on macOS. Pre-sort filenames.
+2025-11-16: Fixed wxListCtrl column width on macOS. Pre-sort filenames. Created release v1.0 including executables for Windows x64, Windows arm64 and macOS.
