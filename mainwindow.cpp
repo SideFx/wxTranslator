@@ -99,15 +99,14 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, wxEmptyString) {
     m_originalTextListBox->InsertColumn(1, _("Source Text"), wxLIST_FORMAT_LEFT, 800);    
     m_originalTextListBox->Bind(wxEVT_LIST_ITEM_SELECTED, &MainWindow::onOriginalTextListBoxSelection, this);    
     rightSizer->Add(m_originalTextListBox, 1, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, c_hPadding);
-    wxClientDC dc(this);
-    dc.SetFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT));
-    int w, h;
-    dc.GetTextExtent("X", &w, &h);
+    
     auto* lbl_originalText = new wxStaticText(rightPanel, wxID_ANY, _("Selected source text:"), wxDefaultPosition,
         wxDefaultSize, wxEXPAND); 
     rightSizer->Add(lbl_originalText, 0, wxEXPAND | wxRIGHT | wxLEFT, c_hPadding);
     m_originalText = new wxTextCtrl(rightPanel, wxID_ANY, wxEmptyString,
-        wxDefaultPosition, wxSize(-1, 4 * (h + 2)), wxTE_MULTILINE | wxTE_BESTWRAP | wxTE_READONLY);    
+        wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxTE_BESTWRAP | wxTE_READONLY); 
+    int lineHeight = m_originalText->GetCharHeight();
+    m_originalText->SetMinSize(wxSize(-1, (lineHeight + 3) * 4));
     rightSizer->Add(m_originalText, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, c_hPadding);
     auto* gridBagSizer = new wxGridBagSizer(0, 0);
     auto* lbl_translatedText = new wxStaticText(rightPanel, wxID_ANY, _("Translated text:"), wxDefaultPosition,
@@ -132,7 +131,8 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, wxEmptyString) {
         wxEXPAND | wxRIGHT | wxLEFT, c_hPadding);
     rightSizer->Add(gridBagSizer, 0, wxEXPAND | wxRIGHT | wxLEFT, c_hPadding);
     m_translatedText = new wxTextCtrl(rightPanel, wxID_ANY, wxEmptyString,
-        wxDefaultPosition, wxSize(-1, 4 * (h + 2)), wxTE_MULTILINE | wxTE_BESTWRAP);
+        wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxTE_BESTWRAP);
+    m_translatedText->SetMinSize(wxSize(-1, (lineHeight + 3) * 4));    
     m_translatedText->SetEditable(false); 
     m_translatedText->SetBackgroundColour(wxColour(255, 255, 255));   
     m_translatedText->Bind(wxEVT_TEXT, &MainWindow::onTranslatedTextChanged, this); 

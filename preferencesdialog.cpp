@@ -51,18 +51,6 @@ int PreferencesDialog::showDialog(mo_app_settings preferences) {
     m_inp_exclusion->SetMinSize(wxSize(baseWidth, (lineHeight + 3) * 4));
     m_inp_exclusion->SetValue(m_prefs.exclude_folders);
     gridBagSizer->Add(m_inp_exclusion, wxGBPosition(1, 1), wxDefaultSpan, wxEXPAND);
-
-    /*
-    auto* lbl_msgfmt_path = new wxStaticText(m_dialog, wxID_ANY, _("Path to msgfmt tool:"));
-    gridBagSizer->Add(lbl_msgfmt_path, wxGBPosition(2, 0),
-        wxDefaultSpan, wxALIGN_CENTER_VERTICAL);
-    m_filePicker = new wxFilePickerCtrl(m_dialog, wxID_ANY, "", "", "",
-       wxDefaultPosition, wxDefaultSize,
-       wxFLP_USE_TEXTCTRL | wxFLP_SMALL | wxFLP_FILE_MUST_EXIST);
-    m_filePicker->SetFileName(toWxString(m_prefs.msgfmt_path));
-    gridBagSizer->Add(m_filePicker, wxGBPosition(2, 1), wxDefaultSpan, wxEXPAND);
-    */
-
     auto* buttonBox = new wxBoxSizer(wxHORIZONTAL);
     auto* btn_ok = new wxButton(m_dialog, wxID_OK, CAP_OK);
     btn_ok->Bind(wxEVT_BUTTON, &PreferencesDialog::onOkClicked, this);
@@ -85,7 +73,6 @@ mo_app_settings PreferencesDialog::getPreferences() {
 
 void PreferencesDialog::onOkClicked(wxCommandEvent& event) {
     m_prefs.exclude_folders = toStdString(m_inp_exclusion->GetValue()); ;
-    //m_prefs.msgfmt_path = toStdString(m_filePicker->GetFileName().GetFullPath());;
     for (auto& ch : m_extensionBoxes) {
         for (auto& p : m_prefs.extensions) {
             if (p.first == toStdString(ch->GetName())) {
