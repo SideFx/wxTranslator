@@ -19,7 +19,7 @@ bool MyApp::OnInit() {
     if (lang >= wxLANGUAGE_GERMAN && lang <= wxLANGUAGE_GERMAN_SWISS)
     {
         if (m_locale.Init(lang, wxLOCALE_LOAD_DEFAULT)) {
-            wxLocale::AddCatalogLookupPathPrefix(wxGetCwd() + "/locale");
+             wxLocale::AddCatalogLookupPathPrefix(wxGetCwd() + "/locale");
             m_locale.AddCatalog("wxTranslate_DE");
         }
     }
