@@ -51,8 +51,8 @@ Added presets for Windows arm64 and msys2 clangarm64 toolchain to CMakePresets.j
 2025-11-14:
 Added presets for macOS to CMakePresets.json. Made adaptions to CMakeLists.txt accordingly. Stored sash position in app preferences. Added default xy-offset and window size for Mainwindow at first startup. New shell script for MSYS2 setup on Windows arm64. Created macOS app.icns.
 
-2025-11-15: Added logic to internally generate the machine object `.MO` file without requiring external utilities like `MSGFMT`. Updated the macOS app.icns. Numerous UI changes to improve macOS compatibility. Discovered that the build process on macOS produces flawed info.plist files [MacOS Tahoe 26.1: FilePicker and DirPicker not working #25973](https://github.com/wxWidgets/wxWidgets/issues/25973#issuecomment-3533524803), so removed the `MACOSX_BUNDLE` option from CMakeLists.txt as a workaround. 
+2025-11-15: Added logic to internally generate the machine object `.MO` file without requiring external utilities like `MSGFMT`. Updated the macOS app.icns. Numerous UI changes to improve macOS compatibility. Discovered that the build process on macOS produces flawed info.plist files [MacOS Tahoe 26.1: FilePicker and DirPicker not working #25973](https://github.com/wxWidgets/wxWidgets/issues/25973#issuecomment-3533524803). 
 
-2025-11-16: Fixed wxListCtrl column width on macOS. Pre-sorted filenames. Created release v1.0, including executables for Windows x64, Windows arm64 and macOS.
+2025-11-16: Fixed wxListCtrl column width on macOS. Pre-sorted filenames. Added pre-configured `Info.plist` for macOS. Created release v1.0, including executables for Windows x64, Windows arm64 and macOS. 
 
 2025-11-17: Added a recommendation on how to build wxWidgets on macOS. See folder: `How to build wxWidgets`.
