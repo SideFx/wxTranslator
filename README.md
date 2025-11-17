@@ -1,6 +1,6 @@
 **wxTranslator (w) 2025 by Jan Buchholz**
 
-wxTranslator is a utility that helps developers create and manage translation files for wxWidgets applications by extracting source text from wxWidgets translation macros without requiring any external tools.
+wxTranslator is a utility that helps developers create and manage machine object `.MO` files for wxWidgets applications by extracting source text from wxWidgets translation macros without requiring any external tools.
 
 ### Application Start
 ![Screenshot](images/img01.png)
