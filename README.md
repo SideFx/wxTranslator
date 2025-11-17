@@ -46,7 +46,8 @@ wxTranslator was used to generate its German translation:
 
 ### Updates
 2025-11-13:
-Added presets for Windows arm64 and msys2 clangarm64 toolchain to CMakePresets.json. Obviously there's no reliable method to detect the processor architecture in CMake at the moment. Tried a quirky workaround using PROCESSOR_IDENTIFIER, which works at least on my machines.
+Added presets for Windows arm64 and the MSYS2 clangarm64 toolchain to CMakePresets.json. 
+Since CMake currently lacks a reliable way to detect the processor architecture (?), I tried a quirky workaround using PROCESSOR_IDENTIFIER, which appears to work — for now.
 
 2025-11-14:
 Added presets for macOS to CMakePresets.json. Made adaptions to CMakeLists.txt accordingly. Stored sash position in app preferences. Added default xy-offset and window size for Mainwindow at first startup. New shell script for MSYS2 setup on Windows arm64. Created macOS app.icns.
