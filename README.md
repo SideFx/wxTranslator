@@ -45,15 +45,21 @@ wxTranslator was used to generate its German translation:
 - Microsoft Copilot, which was an indispensable help during my very first delve into wxWidgets
 
 ### Updates
-2025-11-13:
+**2025-11-13:**
 Added presets for Windows arm64 and the MSYS2 clangarm64 toolchain to CMakePresets.json. 
 Since CMake currently lacks a reliable way to detect the processor architecture (?), I tried a quirky workaround using PROCESSOR_IDENTIFIER, which appears to work — for now.
 
-2025-11-14:
+**2025-11-14:**
 Added presets for macOS to CMakePresets.json. Made adaptions to CMakeLists.txt accordingly. Stored sash position in app preferences. Added default xy-offset and window size for Mainwindow at first startup. New shell script for MSYS2 setup on Windows arm64. Created macOS app.icns.
 
-2025-11-15: Added logic to internally generate the machine object `.MO` file without requiring external utilities like `MSGFMT`. Updated the macOS app.icns. Numerous UI changes to improve macOS compatibility. Discovered that the build process on macOS produces flawed info.plist files [MacOS Tahoe 26.1: FilePicker and DirPicker not working #25973](https://github.com/wxWidgets/wxWidgets/issues/25973#issuecomment-3533524803). 
+**2025-11-15:** 
+Added logic to internally generate the machine object `.MO` file without requiring external utilities like `MSGFMT`. Updated the macOS app.icns. Numerous UI changes to improve macOS compatibility. Discovered that the build process on macOS produces flawed info.plist files [MacOS Tahoe 26.1: FilePicker and DirPicker not working #25973](https://github.com/wxWidgets/wxWidgets/issues/25973#issuecomment-3533524803). 
 
-2025-11-16: Fixed wxListCtrl column width on macOS. Pre-sorted filenames. Added pre-configured `Info.plist` for macOS. Created release v1.0, including executables for Windows x64, Windows arm64 and macOS. 
+**2025-11-16:** 
+Fixed wxListCtrl column width on macOS. Pre-sorted filenames. Added pre-configured `Info.plist` for macOS. Created release v1.0, including executables for Windows x64, Windows arm64 and macOS. 
 
-2025-11-17: Added a recommendation on how to build wxWidgets on macOS. See folder: `How to build wxWidgets`.
+**2025-11-17:** 
+Added a recommendation on how to build wxWidgets on macOS. See folder: `How to build wxWidgets`.
+
+**2025-12-14:**
+Finally managed to properly load the MO file in main.cpp by winning a fierce battle against wxStandardPaths. Added post_build commands for macOS to build the bundle (might still not be perfect). Rebuild all binary releases.

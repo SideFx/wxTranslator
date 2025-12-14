@@ -32,13 +32,17 @@ add_executable(wxTranslator WIN32
 )
 add_custom_command(TARGET wxTranslator POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:wxTranslator>/de"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:wx::base> ${CMAKE_BINARY_DIR}
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:wx::core> ${CMAKE_BINARY_DIR}
 )
 if(EXISTS "${CMAKE_SOURCE_DIR}/${MO_FILE}")
     add_custom_command(TARGET wxTranslator POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/${MO_FILE}"
                 "$<TARGET_FILE_DIR:wxTranslator>/de"
-    )
-endif()    
+)
+endif()
 endif()
 
 if(APPLE)
