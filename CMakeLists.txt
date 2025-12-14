@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.25)
 project(wxTranslator)
 set(CMAKE_CXX_STANDARD 20)
+set(MO_FILE wxTranslate_DE.mo)
 if(WIN32)
-set(CMAKE_PREFIX_PATH C:/wxWidgets)
 set(wxWidgets_ROOT_DIR C:/wxWidgets)
-set(TRANSLATION_DIR "${PROJECT_BINARY_DIR}/locale/de")
 add_executable(wxTranslator WIN32
         main.cpp
         mainwindow.cpp
@@ -31,12 +30,18 @@ add_executable(wxTranslator WIN32
         mobuilder.h
         logo.hpp
 )
-if(NOT EXISTS ${TRANSLATION_DIR})
-        file(MAKE_DIRECTORY ${TRANSLATION_DIR})
-    endif()
+add_custom_command(TARGET wxTranslator POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:wxTranslator>/de"
+)
+if(EXISTS "${CMAKE_SOURCE_DIR}/${MO_FILE}")
+    add_custom_command(TARGET wxTranslator POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/${MO_FILE}"
+                "$<TARGET_FILE_DIR:wxTranslator>/de"
+    )
+endif()    
 endif()
+
 if(APPLE)
-set(CMAKE_PREFIX_PATH /Users/Shared/wxWidgets)
 set(wxWidgets_ROOT_DIR /Users/Shared/wxWidgets)
 add_executable(wxTranslator
         main.cpp
@@ -76,4 +81,20 @@ if(APPLE)
         RESOURCE app.icns
         MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/Info.plist
     )
+    add_custom_command(TARGET wxTranslator POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:wxTranslator>/../Frameworks"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:wxTranslator>/../Resources/de.lproj"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different  "${wxWidgets_ROOT_DIR}/lib/libwx_baseu-3.3*.dylib"
+          "$<TARGET_FILE_DIR:wxTranslator>/../Frameworks"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different  "${wxWidgets_ROOT_DIR}/lib/libwx_osx_cocoau_core-3.3*.dylib"
+          "$<TARGET_FILE_DIR:wxTranslator>/../Frameworks" 
+        COMMAND install_name_tool -add_rpath "@executable_path/../Frameworks"
+            "$<TARGET_FILE:wxTranslator>" COMMENT "Adjusting install names for wxWidgets libs"   
+    )
+    if(EXISTS "${CMAKE_SOURCE_DIR}/${MO_FILE}")
+    add_custom_command(TARGET wxTranslator POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/${MO_FILE}"
+                "$<TARGET_FILE_DIR:wxTranslator>/../Resources/de.lproj"
+    )
+    endif()    
 endif()

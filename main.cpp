@@ -6,6 +6,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include <wx/wx.h>
+#include <wx/stdpaths.h>
 #include "mainwindow.h"
 
 class MyApp final : public wxApp {
@@ -19,7 +20,8 @@ bool MyApp::OnInit() {
     if (lang >= wxLANGUAGE_GERMAN && lang <= wxLANGUAGE_GERMAN_SWISS)
     {
         if (m_locale.Init(lang, wxLOCALE_LOAD_DEFAULT)) {
-             wxLocale::AddCatalogLookupPathPrefix(wxGetCwd() + "/locale");
+            wxStandardPaths& stdPaths = wxStandardPaths::Get(); 	
+            wxLocale::AddCatalogLookupPathPrefix(stdPaths.GetResourcesDir());
             m_locale.AddCatalog("wxTranslate_DE");
         }
     }
