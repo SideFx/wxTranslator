@@ -7,9 +7,8 @@ build/
 *.so
 *.dylib
 
-# Translation files
-*.mo
-*.po
+
+.DS_Store
 
 # Logs
 *.log
@@ -26,3 +25,4 @@ Makefile
 *.user
 *.sln
 *.vcxproj*
+.DS_Store
