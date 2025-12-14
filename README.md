@@ -62,4 +62,4 @@ Fixed wxListCtrl column width on macOS. Pre-sorted filenames. Added pre-configur
 Added a recommendation on how to build wxWidgets on macOS. See folder: `How to build wxWidgets`.
 
 **2025-12-14:**
-Finally managed to properly load the MO file in main.cpp by winning a fierce battle against wxStandardPaths. Added post_build commands for macOS to build the bundle (might still not be perfect). Rebuild all binary releases.
+Finally managed to properly load the MO file in main.cpp by winning a fierce battle against wxStandardPaths. Added post_build commands for macOS to build the bundle (might still not be perfect). Rebuilt all binary releases.
