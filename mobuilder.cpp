@@ -8,7 +8,6 @@
 #include "mobuilder.h"
 #include "jbconversion.hpp"
 #include <fstream>
-#include <iostream>
 
 bool MoBuilder::buildMoFile(const mt_translations& translations, const std::string& moFile) {
     std::string original;
